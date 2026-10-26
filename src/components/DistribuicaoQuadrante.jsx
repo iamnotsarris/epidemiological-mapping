@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function DistribuicaoUbs({ distribuicaoUbs }) {
-  // Cria uma cópia do array e ordena os itens do maior (b.value) para o menor (a.value)
   const ubsOrdenadas = [...distribuicaoUbs].sort((a, b) => b.value - a.value);
 
   return (
@@ -13,7 +12,6 @@ export default function DistribuicaoUbs({ distribuicaoUbs }) {
         <p className="text-sm text-slate-500">Áreas com mais casos de dengue</p>
       </div>
       <div className="flex-1 space-y-5 overflow-y-auto">
-        {/* Agora iteramos sobre a lista já ordenada */}
         {ubsOrdenadas.map((item, idx) => (
           <div key={idx}>
             <div className="flex justify-between text-sm mb-1.5">

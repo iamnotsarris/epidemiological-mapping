@@ -81,7 +81,7 @@ export default function TabelaCasos({ pacientes = [], escopo = "unidade" }) {
         </div>
       </div>
 
-      <div className="overflow-x-auto -mx-5 md:-mx-6 px-5 md:px-6 max-h-[500px] overflow-y-auto">
+      <div className="overflow-x-auto -mx-5 md:-mx-6 px-5 md:px-6 max-h-125 overflow-y-auto select-none">
         {ultimos.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-12 text-slate-300">
             <FileSearch className="size-16 mb-3 opacity-50" />

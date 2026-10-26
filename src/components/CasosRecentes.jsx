@@ -68,12 +68,6 @@ export default function CasosRecentes({ casos, onSelectPaciente }) {
           ))
         )}
       </div>
-
-      {casos.length > 0 && (
-        <button className="mt-4 w-full py-2 text-xs font-bold text-[#4180ab] bg-[#4180ab]/5 hover:bg-[#4180ab]/10 rounded-lg transition-colors cursor-pointer">
-          Ver todos os casos
-        </button>
-      )}
     </div>
   );
 }

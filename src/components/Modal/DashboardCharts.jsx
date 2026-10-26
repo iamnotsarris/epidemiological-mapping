@@ -172,7 +172,7 @@ export function StatusDonut({ pacientes }) {
 
   return (
     // Ajustado padding e overflow para mobile
-    <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-4 md:p-6 flex flex-col h-full w-full overflow-hidden">
+    <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-4 md:p-6 flex flex-col h-full w-full overflow-hidden mb-15">
       <div className="mb-2">
         <h3 className="text-lg font-bold text-slate-800">Status dos Casos</h3>
         <p className="text-sm text-slate-500">
@@ -210,7 +210,6 @@ export function StatusDonut({ pacientes }) {
             />
           </PieChart>
         </ResponsiveContainer>
-        {/* Legenda Customizada com espaçamentos corrigidos pro mobile */}
         <div
           className={`flex flex-wrap justify-center gap-2 md:gap-3 ${isMobile ? "-mt-14" : "-mt-18.75"} pb-2`}
         >
