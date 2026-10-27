@@ -506,47 +506,54 @@ function Home() {
 
             <footer className="border-t border-slate-200/70 pt-6 text-center lg:text-left">
               <p className="mb-1 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 sm:text-[11px]">
-                Secretaria de Saúde
+                Secretaria de Saúde.
               </p>
               <p className="text-[11px] font-medium text-slate-400 sm:text-xs">
                 Floriano, PI &copy; {new Date().getFullYear()}
               </p>
 
-              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[10px] font-medium text-slate-400 sm:text-xs lg:justify-start">
-                <button
-                  type="button"
-                  onClick={() => setIsPrivacyModalOpen(true)}
-                  className="cursor-pointer rounded-sm transition-colors hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30"
-                >
-                  Política de Privacidade
-                </button>
+              <div className="mt-5 flex flex-col items-center gap-2.5 text-[10px] font-medium text-slate-400 sm:text-xs lg:items-start">
+                {/* Linha 1: Links Rápidos */}
+                <div className="flex items-center justify-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setIsPrivacyModalOpen(true)}
+                    className="cursor-pointer rounded-sm transition-colors hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30"
+                  >
+                    Política de Privacidade
+                  </button>
+                  <span aria-hidden="true" className="text-slate-300">
+                    •
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setIsTermsModalOpen(true)}
+                    className="cursor-pointer rounded-sm transition-colors hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30"
+                  >
+                    Termos de Uso
+                  </button>
+                </div>
 
-                <span aria-hidden="true" className="text-slate-300">
-                  •
-                </span>
-
-                <button
-                  type="button"
-                  onClick={() => setIsTermsModalOpen(true)}
-                  className="cursor-pointer rounded-sm transition-colors hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30"
-                >
-                  Termos de Uso
-                </button>
-
-                <span aria-hidden="true" className="text-slate-300">
-                  •
-                </span>
-
-                <span className="inline-flex flex-wrap items-center justify-center gap-1">
-                  <span>Desenvolvido pela Secretaria de Saúde &amp;</span>
+                {/* Linha 2: Créditos */}
+                <p className="flex flex-wrap items-center justify-center gap-1 text-slate-400/80 lg:justify-start">
+                  <span>Desenvolvido por</span>
                   <button
                     type="button"
                     onClick={() => setIsAboutDevOpen(true)}
-                    className="cursor-pointer rounded-sm underline-offset-2 transition-colors hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30"
+                    className="cursor-pointer rounded-sm font-semibold text-slate-500 underline-offset-2 transition-colors hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30"
                   >
                     Victor Sarrís
                   </button>
-                </span>
+                  <span>em parceria com a</span>
+                  <a
+                    href="https://www.floriano.pi.gov.br/secretaria-saude"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-pointer rounded-sm font-semibold text-slate-500 underline-offset-2 transition-colors hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30"
+                  >
+                    Secretaria de Saúde
+                  </a>
+                </p>
               </div>
             </footer>
           </div>
