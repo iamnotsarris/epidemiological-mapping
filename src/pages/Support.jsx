@@ -111,7 +111,6 @@ function RankingCard({ data }) {
   );
 }
 
-/** KPI grande — usado para "quantos casos de X" */
 function KpiCard({ data }) {
   return (
     <div className="rounded-2xl rounded-tl-sm border border-slate-200 bg-gradient-to-br from-[#4180ab]/10 to-white p-5 shadow-sm w-full">

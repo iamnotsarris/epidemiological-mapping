@@ -512,36 +512,37 @@ function Home() {
                 Floriano, PI &copy; {new Date().getFullYear()}
               </p>
 
-              <div className="mt-5 flex flex-row flex-wrap items-center justify-center gap-3 lg:justify-start">
+              <div className="mt-5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[10px] font-medium text-slate-400 sm:text-xs lg:justify-start">
                 <button
                   type="button"
                   onClick={() => setIsPrivacyModalOpen(true)}
-                  className="cursor-pointer rounded-sm text-[10px] font-medium text-slate-400 transition-all hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30 sm:text-xs"
+                  className="cursor-pointer rounded-sm transition-colors hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30"
                 >
                   Política de Privacidade
                 </button>
 
-                <span className="text-[10px] text-slate-300" aria-hidden="true">
+                <span aria-hidden="true" className="text-slate-300">
                   •
                 </span>
 
                 <button
                   type="button"
                   onClick={() => setIsTermsModalOpen(true)}
-                  className="cursor-pointer rounded-sm text-[10px] font-medium text-slate-400 transition-all hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30 sm:text-xs"
+                  className="cursor-pointer rounded-sm transition-colors hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30"
                 >
                   Termos de Uso
                 </button>
 
-                <span className="text-[10px] text-slate-300" aria-hidden="true">
+                <span aria-hidden="true" className="text-slate-300">
                   •
                 </span>
-                <span className="inline-flex flex-wrap items-center justify-center gap-1 text-[10px] font-medium text-slate-400 sm:text-xs">
+
+                <span className="inline-flex flex-wrap items-center justify-center gap-1">
                   <span>Desenvolvido pela Secretaria de Saúde &amp;</span>
                   <button
                     type="button"
                     onClick={() => setIsAboutDevOpen(true)}
-                    className="cursor-pointer rounded-sm font-medium underline-offset-2 transition-colors hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30"
+                    className="cursor-pointer rounded-sm underline-offset-2 transition-colors hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30"
                   >
                     Victor Sarrís
                   </button>

@@ -98,7 +98,7 @@ const ENDEMIAS = [
   {
     id: "intoxicacao",
     nome: "Casos de Intoxicação",
-    endpoint: "/api/animaispec/",
+    endpoint: "/api/intoxicacao/",
   },
   {
     id: "violencia",
@@ -773,7 +773,7 @@ export default function Dashboard({ isPrivateView = false }) {
           <div className="flex items-center gap-3 md:gap-4 flex-1 min-w-0">
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="md:hidden shrink-0 group p-2 text-white bg-white/10 rounded-xl hover:bg-white/20 border border-transparent hover:border-white/10 transition-all duration-300"
+              className="md:hidden shrink-0 group p-2 text-white bg-white/10 rounded-xl hover:bg-white/20 border border-transparent hover:border-white/10 transition-all duration-300 cursor-pointer"
               aria-label="Abrir menu"
             >
               <Menu className="size-5 sm:size-6 group-hover:scale-110 transition-transform duration-200" />
