@@ -498,7 +498,7 @@ function Support({ isPrivateView = false }) {
               ajudar pelo email:{" "}
               <a
                 href="mailto:vigilanciafloriano@gmail.com"
-                className="text-amber-700 hover:text-amber-800 font-bold underline underline-offset-2 break-all transition-colors"
+                className="text-amber-700 hover:text-amber-800 font-bold underline underline-offset-2 break-all transition-colors hover:no-underline"
               >
                 vigilanciafloriano@gmail.com
               </a>

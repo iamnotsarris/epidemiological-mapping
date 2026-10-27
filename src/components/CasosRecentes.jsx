@@ -79,11 +79,11 @@ export default function CasosRecentes({ casos = [], onSelectPaciente }) {
                 key={idx}
                 type="button"
                 onClick={() => onSelectPaciente?.(caso.dadosOriginais)}
-                className="group flex items-center justify-between p-3 rounded-xl bg-slate-50/60 hover:bg-white text-left transition-all duration-200 border border-transparent hover:border-slate-200 hover:shadow-sm"
+                className="group flex items-center justify-between p-3 rounded-xl bg-slate-50/60 hover:bg-white text-left transition-all duration-200 border border-transparent hover:border-slate-200 hover:shadow-sm cursor-pointer"
               >
                 <div className="flex items-center gap-3 flex-1 min-w-0">
                   <div
-                    className={`w-1.5 h-11 rounded-full flex-shrink-0 ${caso.corClassificacao} shadow-sm`}
+                    className={`w-1.5 h-11 rounded-full shrink-0 ${caso.corClassificacao} shadow-sm`}
                   />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 min-w-0">
@@ -114,7 +114,7 @@ export default function CasosRecentes({ casos = [], onSelectPaciente }) {
                     </div>
                   </div>
                 </div>
-                <ArrowRight className="size-4 text-slate-300 group-hover:text-[#4180ab] group-hover:translate-x-1 transition-all duration-200 flex-shrink-0 ml-2" />
+                <ArrowRight className="size-4 text-slate-300 group-hover:text-[#4180ab] group-hover:translate-x-1 transition-all duration-200 shrink-0 ml-2" />
               </button>
             );
           })

@@ -85,7 +85,7 @@ export default function TabelaCasos({
         </div>
       </div>
 
-      <div className="overflow-x-auto -mx-5 md:-mx-6 px-5 md:px-6 max-h-[500px] overflow-y-auto">
+      <div className="overflow-x-auto -mx-5 md:-mx-6 px-5 md:px-6 max-h-125 overflow-y-auto">
         {ultimos.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-12 text-center">
             <div className="size-14 rounded-2xl bg-slate-50 flex items-center justify-center mb-3">
@@ -99,7 +99,7 @@ export default function TabelaCasos({
             </p>
           </div>
         ) : (
-          <table className="w-full text-left text-sm text-slate-600 min-w-[600px] border-separate border-spacing-0">
+          <table className="w-full text-left text-sm text-slate-600 min-w-150 border-separate border-spacing-0">
             <thead className="text-[11px] text-slate-500 uppercase tracking-wider">
               <tr>
                 <th className="sticky top-0 z-10 bg-slate-50 px-4 py-3 font-semibold text-left rounded-tl-lg border-b border-slate-100">
@@ -142,7 +142,7 @@ export default function TabelaCasos({
                     <td className="px-4 py-3 whitespace-nowrap text-slate-500 font-mono text-xs border-b border-slate-50">
                       #{p.numero_notificacao || p.nu_notific || "S/N"}
                     </td>
-                    <td className="px-4 py-3 whitespace-nowrap text-slate-600 max-w-[180px] truncate border-b border-slate-50">
+                    <td className="px-4 py-3 whitespace-nowrap text-slate-600 max-w-45 truncate border-b border-slate-50">
                       {extrairBairro(p.endereco)}
                     </td>
                     <td className="px-4 py-3 whitespace-nowrap border-b border-slate-50">

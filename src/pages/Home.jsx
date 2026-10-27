@@ -536,14 +536,16 @@ function Home() {
                 <span className="text-[10px] text-slate-300" aria-hidden="true">
                   •
                 </span>
-
-                <button
-                  type="button"
-                  onClick={() => setIsAboutDevOpen(true)}
-                  className="cursor-pointer rounded-sm text-[10px] font-medium text-slate-400 transition-all hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30 sm:text-xs"
-                >
-                  Desenvolvedor
-                </button>
+                <span className="inline-flex flex-wrap items-center justify-center gap-1 text-[10px] font-medium text-slate-400 sm:text-xs">
+                  <span>Desenvolvido pela Secretaria de Saúde &amp;</span>
+                  <button
+                    type="button"
+                    onClick={() => setIsAboutDevOpen(true)}
+                    className="cursor-pointer rounded-sm font-medium underline-offset-2 transition-colors hover:text-[#054060] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[#054060]/30"
+                  >
+                    Victor Sarrís
+                  </button>
+                </span>
               </div>
             </footer>
           </div>
