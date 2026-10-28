@@ -2020,14 +2020,9 @@ export default function MapViolencia({ isPrivateView = true }) {
       });
   }, []);
 
-  // Lógica principal: mapear nome da Instituição/UBS para a área GeoJSON
-  // Lógica principal: mapear nome da UBS para o nome da área no GeoJSON
   useEffect(() => {
     if (todosPacientes.length === 0) return;
 
-    // ==========================================
-    // 1. FILTRO DE PERÍODO (NOVO)
-    // ==========================================
     const hoje = new Date();
     const anoAtual = hoje.getFullYear();
     let dataRefInicio = new Date();
@@ -2073,7 +2068,6 @@ export default function MapViolencia({ isPrivateView = true }) {
         );
       }
 
-      // Fallback para agravos que só têm ano (Hanseníase geralmente tem ano_notific)
       const anoNotific = p.ano_notific || p["ANO NOTIFIC"] || p.ano;
       if (anoNotific) {
         const anoNum = Number(anoNotific);
@@ -2169,16 +2163,12 @@ export default function MapViolencia({ isPrivateView = true }) {
           nomeAreaMapa = "AREA UBS RETIRO AMOLAR";
       }
 
-      // Se encontrou a área (seja por CNES ou por Nome), soma os casos
       if (nomeAreaMapa) {
         contagemPorArea[nomeAreaMapa] =
           (contagemPorArea[nomeAreaMapa] || 0) + casosAgregados;
       }
     });
 
-    // ==========================================
-    // 3. INJEÇÃO DOS DADOS NO GEOJSON
-    // ==========================================
     const updatedFeatures = bairrosFlorianoGeoJSON.features.map((feature) => {
       const corOriginal =
         feature.properties.fill || feature.properties.color || "#808080";
