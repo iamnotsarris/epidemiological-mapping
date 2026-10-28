@@ -1931,6 +1931,33 @@ const marcadores = [
   },
 ];
 
+const CNES_PARA_AREA_MAPA = {
+  2778432: "AREA UBS FLORIANO",
+  2778041: "AREA UBS DIRCEU ARCOVERDE",
+  5459583: "AREA UBS JOSE PARAGUASSU", // Removido acento
+  2778254: "AREA DA UBS PEDRO SIMPLICIO",
+  5943817: "AREA UBS ALFREDO DE CARVALHO",
+  2364654: "AREA DA UBS LUIZ TAVARES",
+  2777916: "AREA UBS CAMILO FILHO",
+  2364670: "AREA UBS NOSSA SENHORA DA GUIA",
+  2364697: "AREA UBS RAIMUNDO FILHO",
+  2778246: "AREA UBS PAULO KALUME",
+  2364689: "AREA UBS JOAO ELIAS OKA",
+  2778335: "AREA UBS VIANA DE CARVALHO",
+  2609630: "AREA UBS PAULO MARTINS",
+  2995395: "AREA DA UBS JASMINA BUCAR",
+  2778157: "AREA UBS HELVIDIO DE HOLANDA BARROS",
+  2364662: "AREA UBS MORRINHOS",
+  2778289: "AREA UBS PROTASIO DE MORAES",
+  2778092: "AREA UBS SANTA CRUZ",
+  2364611: "AREA UBS PAM",
+  2777843: "AREA UBS RAIMUNDO BENVINDO LIMA",
+  2364638: "AREA UBS L3",
+  2778181: "AREA UBS LEONARDO DUDIMA",
+  2669129: "AREA UBS MARGARIDA ALVES",
+  2778319: "AREA UBS THEODORO FERREIRA SOBRAL",
+};
+
 export default function MapViolencia({ isPrivateView = true }) {
   const mapRef = useRef(null);
   const [activeStyle, setActiveStyle] = useState("light");
@@ -2074,71 +2101,75 @@ export default function MapViolencia({ isPrivateView = true }) {
     const contagemPorArea = {};
 
     pacientesFiltrados.forEach((paciente) => {
-      const nomeUbsOriginal = String(
-        paciente.nm_ubs || paciente.un_saude || paciente.id_unidade || "",
-      );
-
-      const nomeUbs = nomeUbsOriginal
-        .toUpperCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "");
-
       let nomeAreaMapa = null;
-
-      // Dicionário heurístico de ligação UBS -> Polígono
-      if (nomeUbs.includes("DIRCEU") || nomeUbs.includes("ARCOVERDE"))
-        nomeAreaMapa = "AREA UBS DIRCEU ARCOVERDE";
-      else if (nomeUbs.includes("PARAGUASSU"))
-        nomeAreaMapa = "AREA UBS JOSE PARAGUASSU";
-      else if (nomeUbs.includes("THEODORO") || nomeUbs.includes("SOBRAL"))
-        nomeAreaMapa = "AREA UBS THEODORO FERREIRA SOBRAL";
-      else if (nomeUbs.includes("PEDRO SIMPLICIO"))
-        nomeAreaMapa = "AREA DA UBS PEDRO SIMPLICIO";
-      else if (nomeUbs.includes("ALFREDO"))
-        nomeAreaMapa = "AREA UBS ALFREDO DE CARVALHO";
-      else if (nomeUbs.includes("LUIZ TAVARES") || nomeUbs.includes("TABOCA"))
-        nomeAreaMapa = "AREA DA UBS LUIZ TAVARES";
-      else if (nomeUbs.includes("CAMILO"))
-        nomeAreaMapa = "AREA UBS CAMILO FILHO";
-      else if (nomeUbs.includes("GUIA"))
-        nomeAreaMapa = "AREA UBS NOSSA SENHORA DA GUIA";
-      else if (nomeUbs.includes("RAIMUNDO FILHO"))
-        nomeAreaMapa = "AREA UBS RAIMUNDO FILHO";
-      else if (nomeUbs.includes("KALUME"))
-        nomeAreaMapa = "AREA UBS PAULO KALUME";
-      else if (nomeUbs.includes("OKA") || nomeUbs.includes("ELIAS"))
-        nomeAreaMapa = "AREA UBS JOAO ELIAS OKA";
-      else if (nomeUbs.includes("VIANA"))
-        nomeAreaMapa = "AREA UBS VIANA DE CARVALHO";
-      else if (nomeUbs.includes("PAULO MARTINS"))
-        nomeAreaMapa = "AREA UBS PAULO MARTINS";
-      else if (nomeUbs.includes("HELVIDIO") || nomeUbs.includes("HOLANDA"))
-        nomeAreaMapa = "AREA UBS HELVIDIO DE HOLANDA BARROS";
-      else if (nomeUbs.includes("JASMINA") || nomeUbs.includes("BUCAR"))
-        nomeAreaMapa = "AREA DA UBS JASMINA BUCAR";
-      else if (nomeUbs.includes("PAM") || nomeUbs.includes("P.A.M"))
-        nomeAreaMapa = "AREA UBS PAM";
-      else if (nomeUbs.includes("SANTA CRUZ"))
-        nomeAreaMapa = "AREA UBS SANTA CRUZ";
-      else if (nomeUbs.includes("FLORIANO") || nomeUbs.includes("CENTRO"))
-        nomeAreaMapa = "AREA UBS FLORIANO";
-      else if (nomeUbs.includes("L3")) nomeAreaMapa = "AREA UBS L3";
-      else if (nomeUbs.includes("LEONARDO") || nomeUbs.includes("DUDIMA"))
-        nomeAreaMapa = "AREA UBS LEONARDO DUDIMA";
-      else if (nomeUbs.includes("MORRINHOS"))
-        nomeAreaMapa = "AREA UBS MORRINHOS";
-      else if (nomeUbs.includes("MARGARIDA") || nomeUbs.includes("ALVES"))
-        nomeAreaMapa = "AREA UBS MARGARIDA ALVES";
-      else if (nomeUbs.includes("PROTASIO"))
-        nomeAreaMapa = "AREA UBS PROTASIO DE MORAES";
-      else if (nomeUbs.includes("BENVINDO"))
-        nomeAreaMapa = "AREA UBS RAIMUNDO BENVINDO LIMA";
-      else if (nomeUbs.includes("RETIRO") || nomeUbs.includes("AMOLAR"))
-        nomeAreaMapa = "AREA UBS RETIRO AMOLAR";
-
-      // Soma os casos aglutinados da planilha (nu_notific)
       const casosAgregados = Number(paciente.nu_notific) || 1;
 
+      const cnes = String(paciente.id_unidade || "").trim();
+      if (cnes && CNES_PARA_AREA_MAPA[cnes]) {
+        nomeAreaMapa = CNES_PARA_AREA_MAPA[cnes];
+      }
+
+      if (!nomeAreaMapa) {
+        const nomeUbsOriginal = String(
+          paciente.nm_ubs || paciente.un_saude || "",
+        );
+        const nomeUbs = nomeUbsOriginal
+          .toUpperCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "");
+
+        if (nomeUbs.includes("DIRCEU") || nomeUbs.includes("ARCOVERDE"))
+          nomeAreaMapa = "AREA UBS DIRCEU ARCOVERDE";
+        else if (nomeUbs.includes("PARAGUASSU"))
+          nomeAreaMapa = "AREA UBS JOSE PARAGUASSU";
+        else if (nomeUbs.includes("THEODORO") || nomeUbs.includes("SOBRAL"))
+          nomeAreaMapa = "AREA UBS THEODORO FERREIRA SOBRAL";
+        else if (nomeUbs.includes("PEDRO SIMPLICIO"))
+          nomeAreaMapa = "AREA DA UBS PEDRO SIMPLICIO";
+        else if (nomeUbs.includes("ALFREDO"))
+          nomeAreaMapa = "AREA UBS ALFREDO DE CARVALHO";
+        else if (nomeUbs.includes("LUIZ TAVARES") || nomeUbs.includes("TABOCA"))
+          nomeAreaMapa = "AREA DA UBS LUIZ TAVARES";
+        else if (nomeUbs.includes("CAMILO"))
+          nomeAreaMapa = "AREA UBS CAMILO FILHO";
+        else if (nomeUbs.includes("GUIA"))
+          nomeAreaMapa = "AREA UBS NOSSA SENHORA DA GUIA";
+        else if (nomeUbs.includes("RAIMUNDO FILHO"))
+          nomeAreaMapa = "AREA UBS RAIMUNDO FILHO";
+        else if (nomeUbs.includes("KALUME"))
+          nomeAreaMapa = "AREA UBS PAULO KALUME";
+        else if (nomeUbs.includes("OKA") || nomeUbs.includes("ELIAS"))
+          nomeAreaMapa = "AREA UBS JOAO ELIAS OKA";
+        else if (nomeUbs.includes("VIANA"))
+          nomeAreaMapa = "AREA UBS VIANA DE CARVALHO";
+        else if (nomeUbs.includes("PAULO MARTINS"))
+          nomeAreaMapa = "AREA UBS PAULO MARTINS";
+        else if (nomeUbs.includes("HELVIDIO") || nomeUbs.includes("HOLANDA"))
+          nomeAreaMapa = "AREA UBS HELVIDIO DE HOLANDA BARROS";
+        else if (nomeUbs.includes("JASMINA") || nomeUbs.includes("BUCAR"))
+          nomeAreaMapa = "AREA DA UBS JASMINA BUCAR";
+        else if (nomeUbs.includes("PAM") || nomeUbs.includes("P.A.M"))
+          nomeAreaMapa = "AREA UBS PAM";
+        else if (nomeUbs.includes("SANTA CRUZ"))
+          nomeAreaMapa = "AREA UBS SANTA CRUZ";
+        else if (nomeUbs.includes("FLORIANO") || nomeUbs.includes("CENTRO"))
+          nomeAreaMapa = "AREA UBS FLORIANO";
+        else if (nomeUbs.includes("L3")) nomeAreaMapa = "AREA UBS L3";
+        else if (nomeUbs.includes("LEONARDO") || nomeUbs.includes("DUDIMA"))
+          nomeAreaMapa = "AREA UBS LEONARDO DUDIMA";
+        else if (nomeUbs.includes("MORRINHOS"))
+          nomeAreaMapa = "AREA UBS MORRINHOS";
+        else if (nomeUbs.includes("MARGARIDA") || nomeUbs.includes("ALVES"))
+          nomeAreaMapa = "AREA UBS MARGARIDA ALVES";
+        else if (nomeUbs.includes("PROTASIO"))
+          nomeAreaMapa = "AREA UBS PROTASIO DE MORAES";
+        else if (nomeUbs.includes("BENVINDO"))
+          nomeAreaMapa = "AREA UBS RAIMUNDO BENVINDO LIMA";
+        else if (nomeUbs.includes("RETIRO") || nomeUbs.includes("AMOLAR"))
+          nomeAreaMapa = "AREA UBS RETIRO AMOLAR";
+      }
+
+      // Se encontrou a área (seja por CNES ou por Nome), soma os casos
       if (nomeAreaMapa) {
         contagemPorArea[nomeAreaMapa] =
           (contagemPorArea[nomeAreaMapa] || 0) + casosAgregados;
@@ -2253,7 +2284,7 @@ export default function MapViolencia({ isPrivateView = true }) {
                     linePaint={{
                       "line-color": ["get", "color"],
                       "line-width": ["case", ["==", ["get", "casos"], 0], 1, 2],
-                      "line-dasharray": [2, 2],
+                      "line-dasharray": [1, 0],
                     }}
                     interactive={true}
                     onHover={(e) => {
