@@ -769,7 +769,7 @@ export default function SystemInformation() {
                   </table>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 select-none">
                   <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl">
                     <div className="flex items-center gap-2 mb-2">
                       <CheckCircle2 className="size-4 text-emerald-600 shrink-0" />
