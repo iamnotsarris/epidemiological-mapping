@@ -817,13 +817,13 @@ export default function Dashboard({ isPrivateView = false }) {
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-center gap-3">
-              <div className="flex flex-col sm:flex-row items-center gap-3">
+            <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
+              <div className="flex flex-row items-center gap-2 sm:gap-3 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={copiarLink}
                   title="Compartilhar link com os filtros atuais"
-                  className={`group flex items-center justify-center gap-2 px-3 py-2.5 sm:py-3 rounded-xl border transition-all duration-300 cursor-pointer w-full sm:w-auto ${
+                  className={`group flex items-center justify-center gap-2 p-2.5 sm:px-3 sm:py-3 rounded-xl border transition-all duration-300 cursor-pointer shrink-0 ${
                     copiado
                       ? "bg-emerald-50 border-emerald-300 text-emerald-700"
                       : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 shadow-sm hover:shadow"
@@ -831,24 +831,24 @@ export default function Dashboard({ isPrivateView = false }) {
                 >
                   {copiado ? (
                     <>
-                      <Check className="size-4 sm:size-5 text-emerald-600" />
-                      <span className="text-xs sm:text-sm font-semibold text-emerald-700">
+                      <Check className="size-5 text-emerald-600" />
+                      <span className="hidden sm:inline text-xs sm:text-sm font-semibold text-emerald-700">
                         Link copiado!
                       </span>
                     </>
                   ) : (
                     <>
-                      <Share2 className="size-4 sm:size-5 text-slate-500 group-hover:scale-110 transition-transform duration-200" />
-                      <span className="text-xs sm:text-sm font-semibold">
+                      <Share2 className="size-5 text-slate-500 group-hover:scale-110 transition-transform duration-200" />
+                      <span className="hidden sm:inline text-xs sm:text-sm font-semibold">
                         Compartilhar
                       </span>
                     </>
                   )}
                 </button>
 
-                {/* 📅 Dropdown de Período (intacto, agora sozinho no seu ref) */}
+                {/* 📅 Dropdown de Período */}
                 <div
-                  className="relative w-full sm:w-auto min-w-50"
+                  className="relative flex-1 sm:flex-none sm:w-auto min-w-0 sm:min-w-50"
                   ref={periodoDropdownRef}
                 >
                   <button
@@ -909,35 +909,38 @@ export default function Dashboard({ isPrivateView = false }) {
                     </div>
                   )}
                 </div>
-
-                {/* 📆 Datas personalizadas (intacto) */}
-                {filtroTipo === "personalizado" && (
-                  <div className="flex items-center gap-2 animate-in fade-in zoom-in-95 duration-200 bg-white border border-slate-200 p-1 rounded-lg shadow-sm">
-                    <input
-                      type="date"
-                      value={dataInicio}
-                      onChange={(e) => setDataInicio(e.target.value)}
-                      className="text-sm text-slate-700 bg-transparent rounded-md px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#4180ab]/50 hover:bg-slate-50 cursor-pointer"
-                    />
-                    <span className="text-slate-300 font-medium text-sm">
-                      até
-                    </span>
-                    <input
-                      type="date"
-                      value={dataFim}
-                      onChange={(e) => setDataFim(e.target.value)}
-                      className="text-sm text-slate-700 bg-transparent rounded-md px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#4180ab]/50 hover:bg-slate-50 cursor-pointer"
-                    />
-                  </div>
-                )}
               </div>
 
-              <EndemiaSelector
-                options={endemiasDisponiveis}
-                value={endemiaSelecionada}
-                onChange={setEndemiaSelecionada}
-                className={"cursor-pointer bg-amber-400"}
-              />
+              {/* 📆 Datas personalizadas */}
+              {filtroTipo === "personalizado" && (
+                <div className="flex items-center justify-center gap-2 animate-in fade-in zoom-in-95 duration-200 bg-white border border-slate-200 p-1 rounded-lg shadow-sm w-full sm:w-auto">
+                  <input
+                    type="date"
+                    value={dataInicio}
+                    onChange={(e) => setDataInicio(e.target.value)}
+                    className="text-sm text-slate-700 bg-transparent rounded-md px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#4180ab]/50 hover:bg-slate-50 cursor-pointer"
+                  />
+                  <span className="text-slate-300 font-medium text-sm">
+                    até
+                  </span>
+                  <input
+                    type="date"
+                    value={dataFim}
+                    onChange={(e) => setDataFim(e.target.value)}
+                    className="text-sm text-slate-700 bg-transparent rounded-md px-2 py-1.5 focus:outline-none focus:ring-2 focus:ring-[#4180ab]/50 hover:bg-slate-50 cursor-pointer"
+                  />
+                </div>
+              )}
+
+              {/* 🦠 Seletor de Endemia */}
+              <div className="w-full sm:w-auto">
+                <EndemiaSelector
+                  options={endemiasDisponiveis}
+                  value={endemiaSelecionada}
+                  onChange={setEndemiaSelecionada}
+                  className={"cursor-pointer bg-amber-400"}
+                />
+              </div>
             </div>
           </div>
 
