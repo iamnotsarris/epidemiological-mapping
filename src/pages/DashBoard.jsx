@@ -2,6 +2,8 @@ import React, { useEffect, useState, useMemo, useRef } from "react";
 import Sidebar from "../components/Sidebar.jsx";
 import SidebarPrivate from "@/components/private/SidebarPrivate.jsx";
 import { Helmet } from "react-helmet-async";
+import { Share2 } from "lucide-react";
+import { useDashboardShare } from "../hooks/useDashboardShare.js";
 import {
   Users,
   Activity,
@@ -284,6 +286,18 @@ export default function Dashboard({ isPrivateView = false }) {
   const [filtroTipo, setFiltroTipo] = useState("todos");
   const [dataInicio, setDataInicio] = useState("");
   const [dataFim, setDataFim] = useState("");
+
+  const { copiarLink, copiado } = useDashboardShare({
+    endemiasDisponiveis,
+    endemiaSelecionada,
+    setEndemiaSelecionada,
+    filtroTipo,
+    setFiltroTipo,
+    dataInicio,
+    setDataInicio,
+    dataFim,
+    setDataFim,
+  });
 
   const [isPeriodoDropdownOpen, setIsPeriodoDropdownOpen] = useState(false);
   const periodoDropdownRef = useRef(null);
@@ -805,6 +819,34 @@ export default function Dashboard({ isPrivateView = false }) {
 
             <div className="flex flex-col sm:flex-row items-center gap-3">
               <div className="flex flex-col sm:flex-row items-center gap-3">
+                <button
+                  type="button"
+                  onClick={copiarLink}
+                  title="Compartilhar link com os filtros atuais"
+                  className={`group flex items-center justify-center gap-2 px-3 py-2.5 sm:py-3 rounded-xl border transition-all duration-300 cursor-pointer w-full sm:w-auto ${
+                    copiado
+                      ? "bg-emerald-50 border-emerald-300 text-emerald-700"
+                      : "bg-white border-slate-200 hover:border-slate-300 text-slate-700 shadow-sm hover:shadow"
+                  }`}
+                >
+                  {copiado ? (
+                    <>
+                      <Check className="size-4 sm:size-5 text-emerald-600" />
+                      <span className="text-xs sm:text-sm font-semibold text-emerald-700">
+                        Link copiado!
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <Share2 className="size-4 sm:size-5 text-slate-500 group-hover:scale-110 transition-transform duration-200" />
+                      <span className="text-xs sm:text-sm font-semibold">
+                        Compartilhar
+                      </span>
+                    </>
+                  )}
+                </button>
+
+                {/* 📅 Dropdown de Período (intacto, agora sozinho no seu ref) */}
                 <div
                   className="relative w-full sm:w-auto min-w-50"
                   ref={periodoDropdownRef}
@@ -821,7 +863,6 @@ export default function Dashboard({ isPrivateView = false }) {
                     } text-slate-700 rounded-xl px-4 py-2.5 sm:px-5 sm:py-3 outline-none shadow-sm transition-all hover:shadow cursor-pointer`}
                   >
                     <div className="flex items-center gap-2.5 truncate">
-                      {/* Ícone de calendário um pouco mais escuro */}
                       <CalendarDays className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500 shrink-0" />
                       <span className="text-sm font-medium truncate text-slate-700">
                         {PERIODO_OPTIONS.find((opt) => opt.value === filtroTipo)
@@ -869,6 +910,7 @@ export default function Dashboard({ isPrivateView = false }) {
                   )}
                 </div>
 
+                {/* 📆 Datas personalizadas (intacto) */}
                 {filtroTipo === "personalizado" && (
                   <div className="flex items-center gap-2 animate-in fade-in zoom-in-95 duration-200 bg-white border border-slate-200 p-1 rounded-lg shadow-sm">
                     <input
