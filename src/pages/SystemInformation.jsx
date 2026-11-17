@@ -947,9 +947,7 @@ export default function SystemInformation() {
                             className="px-6 py-4 text-sm text-slate-600 max-w-50 truncate"
                           >
                             {item[col] || (
-                              <span className="text-slate-300 italic">
-                                vazio
-                              </span>
+                              <span className="text-slate-300 italic"></span>
                             )}
                           </td>
                         ))}
