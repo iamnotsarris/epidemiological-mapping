@@ -29,7 +29,7 @@ import {
   ThumbsUp,
   ThumbsDown,
 } from "lucide-react";
-import Mascote from "../assets/Mascote.png";
+import Mascote from "../assets/LogoSupport.png";
 import Caricatura from "../assets/Caricatura.png";
 
 /* -------------------------------------------------------------------------- */
