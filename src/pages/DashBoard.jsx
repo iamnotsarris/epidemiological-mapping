@@ -784,7 +784,7 @@ export default function Dashboard({ isPrivateView = false }) {
         />
       )}
       <div className="flex-1 flex flex-col h-full w-full overflow-y-auto overflow-x-hidden ml-0 md:ml-[var(--sidebar-width,16rem)] transition-all duration-300">
-        <header className="px-4 md:px-8 py-3 flex items-center justify-between sticky top-0 z-30 bg-gradient-to-br from-[#4180ab] to-[#054060] backdrop-blur-md shadow-sm border-b border-white/10">
+        <header className="px-4 md:px-8 py-2 flex items-center justify-between sticky top-0 z-30 bg-gradient-to-br from-[#4180ab] to-[#054060] backdrop-blur-md shadow-sm border-b border-white/10">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsSidebarOpen(true)}
@@ -794,10 +794,14 @@ export default function Dashboard({ isPrivateView = false }) {
             </button>
             <div className="flex items-center gap-2 text-white">
               <LayoutDashboard className="size-5 md:size-6" />
-              <h2 className="text-base md:text-xl font-bold tracking-wide">
-                Administração do Sistema
+              <h2 className="text-sm sm:text-base md:text-xl font-bold tracking-wide text-white truncate">
+                {isUBSView ? "Painel da Unidade" : "Dados Gerais"}
               </h2>
             </div>
+          </div>
+
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+            <UserProfileMenu className="hover:cursor-pointer" />
           </div>
         </header>
 
