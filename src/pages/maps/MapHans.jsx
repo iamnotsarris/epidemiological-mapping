@@ -2201,22 +2201,19 @@ export default function MapHans({ isPrivateView = false }) {
       )}
 
       <div className="flex-1 flex flex-col h-full w-full overflow-y-auto overflow-x-hidden ml-0 md:ml-[var(--sidebar-width,16rem)] transition-all duration-300">
-        <header className="px-4 md:px-8 py-3 flex items-center justify-between sticky top-0 z-30 bg-gradient-to-br from-[#4180ab] to-[#054060] backdrop-blur-md shadow-sm border-b border-white/10 transition-all duration-300">
+        <header className="px-4 md:px-8 py-3 flex items-center justify-between sticky top-0 z-30 bg-gradient-to-br from-[#4180ab] to-[#054060] backdrop-blur-md shadow-sm border-b border-white/10">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setIsSidebarOpen(true)}
-              className="md:hidden p-2 text-white bg-white/20 rounded-md hover:bg-white/30 transition-colors"
+              className="md:hidden p-2 text-white bg-white/10 rounded-lg hover:bg-white/20 active:scale-95 transition-all"
             >
               <Menu className="size-6" />
             </button>
-            <div>
-              <h1 className="text-lg md:text-2xl font-extrabold text-white flex items-center gap-2">
-                <MapIcon className="text-white-600 size-5 md:size-6" />
-                Mapa Epidemiológico Setorial
-              </h1>
-              <p className="text-xs md:text-sm text-white font-medium mt-0.5">
+            <div className="flex items-center gap-2 text-white">
+              <MapIcon className="size-5 md:size-6" />
+              <h2 className="text-base md:text-xl font-bold tracking-wide">
                 Densidade de Casos por UBS - Floriano, PI
-              </p>
+              </h2>
             </div>
           </div>
         </header>
