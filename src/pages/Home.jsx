@@ -17,7 +17,6 @@ import {
 } from "lucide-react";
 import ParticlesBg from "particles-bg";
 
-import EpiDataLogo from "../assets/EPI-DATA.png";
 import LogoHome from "../assets/LogoHome.png";
 import { useAuth } from "../contexts/AuthContext.jsx";
 import PoliLegal from "@/components/Modal/PoliLegal.jsx";
@@ -129,7 +128,7 @@ function SplashLoader({ isFadingOut }) {
           />
 
           <img
-            src={EpiDataLogo}
+            src={LogoHome}
             alt="EPI-DATA"
             className="relative w-32 drop-shadow-lg animate-splash-breathe sm:w-40 select-none"
           />
@@ -269,7 +268,7 @@ function Home() {
                   aria-hidden="true"
                 />
                 <img
-                  src={EpiDataLogo}
+                  src={LogoHome}
                   alt="EPI-DATA"
                   className="w-32 drop-shadow-sm sm:w-36 lg:w-40 xl:w-44"
                 />
