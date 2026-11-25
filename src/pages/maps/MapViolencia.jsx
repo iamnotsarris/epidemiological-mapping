@@ -2058,7 +2058,6 @@ export default function MapViolencia({ isPrivateView = true }) {
     setSelectedIndex(0);
   }, [searchQuery]);
 
-  // Fecha ao clicar fora
   useEffect(() => {
     const onClickOutside = (e) => {
       if (
